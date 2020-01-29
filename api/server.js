@@ -29,8 +29,8 @@ server.post('/api/register', (req, res) => {
 });
 
 server.get('/api/users', restricted, (req, res) => {
-  // const filter = ['id', '>', 1];
-  Users.findBy(filter)
+  const department = req.user.department;
+  Users.findBy({ department })
     .then(users => {
       res.status(200).json(users);
     })
